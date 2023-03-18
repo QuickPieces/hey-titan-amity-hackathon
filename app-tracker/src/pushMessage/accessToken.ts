@@ -5,7 +5,7 @@ const getAccessToken = async (): Promise<string> => {
   const { data }: Record<string, any> = await axios.post(
     `${baseUrlV4}/${sessions}`,
     {
-      userId: 'Demo-man',
+      userId: 'Hey Guys!!',
       deviceId: 'Macintosh',
     },
     {

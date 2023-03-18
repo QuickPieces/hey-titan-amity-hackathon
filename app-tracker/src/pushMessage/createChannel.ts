@@ -6,7 +6,7 @@ const createChannel = async (accessToken: string): Promise<Record<string, any>> 
     const { data }: Record<string, any> = await axios.post(
       `${baseUrlV3}/${channels}`,
       {
-        channelId: 'Techno titan demo',
+        channelId: 'Techno titan mock',
         type: 'community',
       },
       {
