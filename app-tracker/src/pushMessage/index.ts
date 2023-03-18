@@ -8,4 +8,4 @@ const pushMessageToChat = async (textMessage: string): Promise<void> => {
   await createTextMessage(accessToken, channelId, textMessage);
 };
 
-export { pushMessageToChat };
+export default pushMessageToChat;
