@@ -6,7 +6,6 @@ module.exports = {
   mode: "development",
   entry: {
     index: "./src/index.ts",
-    content: "./src/content.ts"
   },
   devtool: "inline-source-map",
   devServer: {
