@@ -1,0 +1,1 @@
+{"version":3,"file":"getRole.d.ts","sourceRoot":"","sources":["../../../src/role/api/getRole.ts"],"names":[],"mappings":"AAKA;;;;;;;;;;;;;GAaG;AACH,eAAO,MAAM,OAAO;aAAkB,MAAM,IAAI,CAAC,QAAQ,CAAC,GAAG,QAAQ,MAAM,MAAM,CAAC,MAAM,IAAI,CAAC,CAAC;IAe9F;;;;;;;;;;;;OAYG;oBACwB,MAAM,IAAI,CAAC,QAAQ,CAAC,GAAG,MAAM,MAAM,CAAC,MAAM,IAAI,CAAC,GAAG,SAAS;CAfrF,CAAC"}
