@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "permissions": ["tabs"],
+  "permissions": ["tabs", "webNavigation"],
   "background": {
     "service_worker": "index.js"
   },
