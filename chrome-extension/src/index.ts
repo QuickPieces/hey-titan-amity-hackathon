@@ -1,3 +1,19 @@
 chrome.tabs.onZoomChange.addListener((ZoomChangeInfo) => {
   console.log(`Zoom level changed to ${ZoomChangeInfo.newZoomFactor}`);
+
+  const data = {
+    query: 'my search query string',
+  };
+
+  fetch('http://localhost:3000/api/search-receive', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(data),
+  })
+    .then((response) => {
+      console.log('Sending search query to tracker service with status:', response.status);
+    })
+    .catch((error) => console.error('Error:', error));
 });
