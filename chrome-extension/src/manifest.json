@@ -4,9 +4,9 @@
   "background": {
     "service_worker": "index.js"
   },
-  "name": "My Chrome Extension",
+  "name": "HeyTitan tracker extended",
   "version": "1.0",
-  "description": "This is my first Chrome extension",
+  "description": "Let HeyTitan helps you what you've been through",
   "icons": {
     "16": "./icons/icon.png",
     "48": "./icons/icon.png",
