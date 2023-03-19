@@ -12,33 +12,15 @@ import { DataSummarizeReport } from './src/instances/data-summarize-report';
 
 dotenv.config(); // load the environment variables
 
-const openAIInstance = new OpenAI().getInstance();
-
 (async () => {
-  // const response = await openAIInstance.createChatCompletion({
-  //   model: "gpt-3.5-turbo",
-  //   messages: [
-  //     {
-  //       role: ChatCompletionRequestMessageRoleEnum.Assistant,
-  //       content: "Can you give the brief explanation of NoMachine concept",
-  //     },
-  //   ],
-  // });
-
-  // console.log(response.data.choices);
-
-  //console.log(ChromeHistoryReader.getChromeSearchHistory());
-
   await Storage.initializeDatabase();
-
   setInterval(AppTracker.getCurrentFocusedApp, 1000);
-
   setInterval(Storage.proceedSummerizationReport.bind(Storage), 10000);
-  //setInterval(DataSummarizeReport.getNotificationAlert, 2000);
+  setInterval(DataSummarizeReport.getNotificationAlert, 60000 * 60);
 
   const PORT = 3000;
 
   server.listen(PORT, () => {
-    console.log(`Server running on port ${PORT}`);
+    console.log(`HeyTitan! has been successfully started at port: ${PORT}`);
   });
 })();
