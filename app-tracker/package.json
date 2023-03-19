@@ -15,7 +15,8 @@
     "dotenv": "^16.0.3",
     "openai": "^3.2.1",
     "sqlite": "^4.1.2",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "core-js": "^3.29.1"
   },
   "devDependencies": {
     "@types/cors": "^2.8.13"
