@@ -4,8 +4,11 @@ import { Storage } from '../storage/storage';
 import { exec } from 'child_process';
 
 export class DataSummarizeReport {
-  public static async getAndSendSummarization(tracks: any[]) {
+  public static async getAndSendSummarization(tracks: any[], searchKeywords: any[]) {
     const timeNormAsText = tracks.map((data) => `- ${(data.time_spent_sec / 3600).toFixed(2)} hours spent on ${data.name}`);
+    const searxhNormAsText = searchKeywords.map((data) => `-- ${data.keyword}`);
+
+    console.log(searxhNormAsText);
 
     const openAIInstance = new OpenAI().getInstance();
 
@@ -23,6 +26,16 @@ export class DataSummarizeReport {
           the activity logs are
 
           ${timeNormAsText.join('\n')}
+
+          ${
+            searchKeywords.length
+              ? `
+            with these searches on google
+
+            ${searxhNormAsText}
+          `
+              : ``
+          }
 
           `,
         },

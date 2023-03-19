@@ -52,7 +52,7 @@ export class Storage {
 
         await db.run(`
       CREATE TABLE search_keyword_history (
-        id SERIAL PRIMARY KEY,
+        id INTEGER PRIMARY KEY AUTOINCREMENT,
         keyword VARCHAR(255) NOT NULL,
         datetime TIMESTAMP WITH TIME ZONE NOT NULL
     );
@@ -68,6 +68,16 @@ export class Storage {
     } catch (err) {
       console.error(err);
     }
+  }
+
+  public static async stampSearchText(searchTxt: string) {
+    console.log('here');
+
+    const ISODate = new Date().toISOString();
+    await this.db.run(`
+      INSERT INTO search_keyword_history (keyword,datetime)
+  VALUES ('${searchTxt}',DATE('${ISODate}', 'localtime', 'start of day'));
+`);
   }
 
   public static async stampAppActivity(appName: string) {
@@ -109,7 +119,11 @@ export class Storage {
           return;
         }
 
-        DataSummarizeReport.getAndSendSummarization(tracks);
+        const searchTexts = await this.db.all(`
+        SELECT * FROM search_keyword_history WHERE datetime='${latestTrack.datetime_trunc}';
+      `);
+
+        DataSummarizeReport.getAndSendSummarization(tracks, searchTexts);
         await this.db.run(`
           INSERT INTO report_generate_stamptation (generated_at,status)
       VALUES (DATE('now', 'localtime', 'start of day'),1);
