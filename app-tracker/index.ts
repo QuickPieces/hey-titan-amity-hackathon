@@ -14,9 +14,10 @@ dotenv.config(); // load the environment variables
 
 (async () => {
   await Storage.initializeDatabase();
+
   setInterval(AppTracker.getCurrentFocusedApp, 1000);
-  setInterval(Storage.proceedSummerizationReport.bind(Storage), 10000);
-  setInterval(DataSummarizeReport.getNotificationAlert, 60000 * 60);
+  setInterval(Storage.proceedSummerizationReport.bind(Storage), 20000);
+  setInterval(DataSummarizeReport.getNotificationAlert, 3600000);
 
   const PORT = 3000;
 

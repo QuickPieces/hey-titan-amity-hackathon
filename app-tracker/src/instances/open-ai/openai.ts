@@ -1,5 +1,5 @@
-import { Configuration, OpenAIApi } from "openai";
-import { IOpenAI } from "./openai.interfaces";
+import { Configuration, OpenAIApi } from 'openai';
+import { IOpenAI } from './openai.interfaces';
 
 export default class OpenAI implements IOpenAI {
   private instance: OpenAIApi;
@@ -8,7 +8,7 @@ export default class OpenAI implements IOpenAI {
   }
   private init(): OpenAIApi {
     const configuration = new Configuration({
-      organization: process.env.OEPN_AI_ORG_ID,
+      //organization: process.env.OEPN_AI_ORG_ID,
       apiKey: process.env.OPEN_AI_API_KEY,
     });
 

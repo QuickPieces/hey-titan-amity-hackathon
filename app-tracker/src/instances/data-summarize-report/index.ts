@@ -2,6 +2,7 @@ import { ChatCompletionRequestMessageRoleEnum } from 'openai';
 import OpenAI from '../open-ai/openai';
 import { Storage } from '../storage/storage';
 import { exec } from 'child_process';
+import pushMessageToChat from '../../pushMessage';
 
 export class DataSummarizeReport {
   public static async getAndSendSummarization(tracks: any[], searchKeywords: any[]) {
@@ -41,7 +42,8 @@ export class DataSummarizeReport {
         },
       ],
     });
-    console.log(response.data.choices[0].message);
+    const message: any = response.data.choices[0].message?.content;
+    pushMessageToChat(message); // probably message size too large <must chunk and send multiple time
   }
 
   public static async getNotificationAlert() {
@@ -56,7 +58,7 @@ export class DataSummarizeReport {
         {
           role: ChatCompletionRequestMessageRoleEnum.Assistant,
           content: `
-          I want you to act as a good psychological messenger. I’ll write you my activity log, and you’ll suggest a short message as a notification in case of exceeding the time spent for me to help me estimate my mental health. In some cases, I will also tell you my activity log. You will also suggest the short message to recommend the suitable actions to help me avoid the mental issues. and if I don't have thing to worry please just send me back a good cheers
+          I want you to act as a good psychological messenger. I’ll write you my activity log, and you’ll suggest a short message as a notification in case of exceeding the time spent for me to help me estimate my mental health. In some cases, I will also tell you my activity log. You will also suggest the short message to recommend the suitable actions to help me avoid the mental issues. and if I don't have thing to worry please just send me back a good cheers. and please respond me back without the special character or any quotes
             
   
             the activity logs are
@@ -70,7 +72,7 @@ export class DataSummarizeReport {
 
     const title = 'Hey',
       subtitle = 'Titan',
-      message = response.data.choices[0].message?.content;
+      message = response.data.choices[0].message?.content.replace(/"/g, '\\"');
 
     const script = 'display notification "' + message + '" with title "' + title + '" subtitle "' + subtitle + '"';
 
